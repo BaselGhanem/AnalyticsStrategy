@@ -122,9 +122,57 @@
             nav, header, section:not(#dashboard), .no-print { display: none !important; }
             .premium-card { box-shadow: none; border: 1px solid #ddd; }
         }
+
+        /* ------------------------------------------------------------------
+         * PRELOADER STYLES (INJECTED)
+         * ------------------------------------------------------------------ */
+        #preloader {
+            position: fixed; inset: 0; background: #020617; z-index: 11000;
+            display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 20px;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .loader-logo {
+            width: 250px;
+            opacity: 0; 
+            transform: translateY(20px);
+            animation: textReveal 0.5s forwards;
+        }
+
+        .loader-text {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .loader-text span {
+            display: inline-block; opacity: 0; transform: translateY(20px);
+            font-size: 2rem; 
+            color: #099999; font-weight: 700;
+            animation: textReveal 0.5s forwards;
+        }
+
+        .loader-text .divider {
+            color: #f1f5f9;
+        }
+
+        @keyframes textReveal { to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="text-slate-800 antialiased selection:bg-brand selection:text-white">
+
+<div id="preloader">
+    <img src="https://prismic-io.s3.amazonaws.com/cloudkitchens-main/0f3fea04-f392-43a4-9db0-fd1759af663e_3-Right-Main.svg" alt="KitchenPark Logo" class="loader-logo">
+    <div class="loader-text">
+        <span>Basel</span>
+        <span>Ghanem</span>
+        <span class="divider">|</span>
+        <span>KitchenPark</span>
+        <span>Case</span>
+        <span>Study</span>
+    </div>
+</div>
 
 <nav class="fixed w-full z-50 glass-panel border-b border-gray-200/50 shadow-sm transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -527,6 +575,23 @@
 
     // --- Initialization ---
     document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- PRELOADER LOGIC (INJECTED) ---
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            const animatedElements = preloader.querySelectorAll('.loader-logo, .loader-text span');
+            let delay = 0;
+            animatedElements.forEach(el => {
+                el.style.animationDelay = `${delay}ms`;
+                delay += 150;
+            });
+            const hideDelay = delay + 1000; 
+            setTimeout(() => { 
+                preloader.style.transform = 'translateY(-100%)'; 
+            }, hideDelay);
+        }
+        // -----------------------------------
+
         lucide.createIcons();
         initScrollAnimations();
         initEventListeners();
