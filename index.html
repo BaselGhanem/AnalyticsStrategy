@@ -122,57 +122,9 @@
             nav, header, section:not(#dashboard), .no-print { display: none !important; }
             .premium-card { box-shadow: none; border: 1px solid #ddd; }
         }
-
-        /* ------------------------------------------------------------------
-         * PRELOADER STYLES (INJECTED)
-         * ------------------------------------------------------------------ */
-        #preloader {
-            position: fixed; inset: 0; background: #020617; z-index: 11000;
-            display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 20px;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .loader-logo {
-            width: 250px;
-            opacity: 0; 
-            transform: translateY(20px);
-            animation: textReveal 0.5s forwards;
-        }
-
-        .loader-text {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .loader-text span {
-            display: inline-block; opacity: 0; transform: translateY(20px);
-            font-size: 2rem; 
-            color: #099999; font-weight: 700;
-            animation: textReveal 0.5s forwards;
-        }
-
-        .loader-text .divider {
-            color: #f1f5f9;
-        }
-
-        @keyframes textReveal { to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="text-slate-800 antialiased selection:bg-brand selection:text-white">
-
-<div id="preloader">
-    <img src="https://prismic-io.s3.amazonaws.com/cloudkitchens-main/0f3fea04-f392-43a4-9db0-fd1759af663e_3-Right-Main.svg" alt="KitchenPark Logo" class="loader-logo">
-    <div class="loader-text">
-        <span>Basel</span>
-        <span>Ghanem</span>
-        <span class="divider">|</span>
-        <span>KitchenPark</span>
-        <span>Case</span>
-        <span>Study</span>
-    </div>
-</div>
 
 <nav class="fixed w-full z-50 glass-panel border-b border-gray-200/50 shadow-sm transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -243,29 +195,29 @@
         <div class="grid md:grid-cols-3 gap-8">
             <div class="premium-card p-8 rounded-3xl fade-in-up">
                 <div class="w-14 h-14 bg-gradient-to-br from-brand-bg to-brand/20 text-brand rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-brand/10">
-                    <i data-lucide="zap" class="w-7 h-7"></i>
+                    <i data-lucide="trending-up" class="w-7 h-7"></i>
                 </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Bias for Action</h3>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Operational Excellence</h3>
                 <p class="text-slate-600 text-sm leading-relaxed">
-                    Moving from raw insight to commercial execution rapidly. I build operational triggers, not just reports. Leveraging 15+ years of experience, I identify pipeline bottlenecks and instantly orchestrate corrective workflows with sales leadership.
+                    With over 11 years of experience driving sales performance, I specialize in automating forecasting models and reducing manual reporting by 40%. I transform complex market patterns into actionable strategies that optimize regional resource allocation and revenue.
                 </p>
             </div>
             <div class="premium-card p-8 rounded-3xl fade-in-up" style="transition-delay: 100ms;">
                 <div class="w-14 h-14 bg-gradient-to-br from-blue-50 to-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-blue-200">
                     <i data-lucide="database" class="w-7 h-7"></i>
                 </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Data-First Mindset</h3>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Advanced BI & Governance</h3>
                 <p class="text-slate-600 text-sm leading-relaxed">
-                    A single source of truth is non-negotiable. I architect complex data models and deliver comprehensive training for advanced Power BI and Excel, ensuring teams operate on validated, structured commercial data.
+                    I build the single source of truth. As a Power BI expert with deep SAP/ERP experience, I architect real-time interactive dashboards and enforce strict CRM data governance, ensuring sales leadership operates on validated commercial intelligence.
                 </p>
             </div>
             <div class="premium-card p-8 rounded-3xl fade-in-up" style="transition-delay: 200ms;">
                 <div class="w-14 h-14 bg-gradient-to-br from-purple-50 to-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-purple-200">
-                    <i data-lucide="shield-check" class="w-7 h-7"></i>
+                    <i data-lucide="users" class="w-7 h-7"></i>
                 </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Ownership Mentality</h3>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Strategic Alignment</h3>
                 <p class="text-slate-600 text-sm leading-relaxed">
-                    End-to-end accountability. As a regional analytics lead, I view the revenue engine as my own product. From data ingestion to the rep's daily dashboard, I own the outcome, accuracy, and adoption.
+                    I bridge the gap between Sales, Finance, and Marketing. Having trained over 1,000 professionals in advanced data techniques, I drive high system adoption and deliver executive-level data storytelling that aligns daily operations with corporate profitability goals.
                 </p>
             </div>
         </div>
@@ -575,23 +527,6 @@
 
     // --- Initialization ---
     document.addEventListener('DOMContentLoaded', () => {
-        
-        // --- PRELOADER LOGIC (INJECTED) ---
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            const animatedElements = preloader.querySelectorAll('.loader-logo, .loader-text span');
-            let delay = 0;
-            animatedElements.forEach(el => {
-                el.style.animationDelay = `${delay}ms`;
-                delay += 150;
-            });
-            const hideDelay = delay + 1000; 
-            setTimeout(() => { 
-                preloader.style.transform = 'translateY(-100%)'; 
-            }, hideDelay);
-        }
-        // -----------------------------------
-
         lucide.createIcons();
         initScrollAnimations();
         initEventListeners();
